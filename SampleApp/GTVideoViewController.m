@@ -29,6 +29,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    // 设置边距
     flowLayout.minimumLineSpacing = 10;
     flowLayout.minimumInteritemSpacing = 10;
     flowLayout.itemSize = CGSizeMake((self.view.frame.size.width - 10)/2, 300);
@@ -54,7 +55,6 @@
     cell.backgroundColor = [UIColor redColor];
     return cell;
 }
-
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

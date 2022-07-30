@@ -20,37 +20,42 @@
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     
+    // UI的生命周期交给新增的Scene Delegate处理
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     self.window.frame = windowScene.coordinateSpace.bounds;
+    
+    // 建立底层tabbar
     UITabBarController *tabbarController = [[UITabBarController alloc] init];
     
     UIViewController *newsviewController = [[GTNewsViewController alloc] init];
-        
 //    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     
 //    UIViewController *controller1 = [[UIViewController alloc] init];
 //    navigationController.view.backgroundColor = [UIColor whiteColor];
 //    navigationController.tabBarItem.title = @"新闻";
-        
     newsviewController.view.backgroundColor = [UIColor whiteColor];
     newsviewController.tabBarItem.title = @"新闻";
+    
     GTVideoViewController *videoController = [[GTVideoViewController alloc] init];
+    
     GTRecommendViewController *recommendController = [[GTRecommendViewController alloc] init];
-
+    
     UIViewController *mineController = [[UIViewController alloc] init];
     mineController.view.backgroundColor = [UIColor greenColor];
     mineController.tabBarItem.title = @"我的";
 
     tabbarController.tabBar.backgroundColor = UIColor.whiteColor;
+    // 加入4个tabbar
     [tabbarController setViewControllers: @[newsviewController, videoController, recommendController, mineController]];
-    
+    // 加入事件委托
     tabbarController.delegate = self;
     
-    
+    // 加入跳转viewcontroller
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:tabbarController];
-    
+    // 必须设置根控制器
     self.window.rootViewController = navigationController;
+    // 显示当前窗口,用于显示当前窗口并将其放置在同一级别或更低级别的所有其他窗口的前面。
     [self.window makeKeyAndVisible];
 
 }

@@ -114,6 +114,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GTNormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id"];
+    // 没有cell才生成
     if (!cell){
         cell = [[GTNormalTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"id"];
         cell.delegate = self;

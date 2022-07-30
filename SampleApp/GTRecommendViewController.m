@@ -28,34 +28,32 @@
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.backgroundColor = [UIColor lightGrayColor];
     scrollView.delegate = self;
+    // 设置长五倍的view
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width*5, self.view.bounds.size.height);
 //    scrollView.showsHorizontalScrollIndicator = NO;
+    
     NSArray *colorArray = @[[UIColor redColor],[UIColor blueColor],[UIColor yellowColor],[UIColor lightGrayColor],[UIColor grayColor]];
     
-    scrollView.pagingEnabled = YES;
+    //scrollView.pagingEnabled = YES;
     for (int i = 0;i < 5;++i){
         [scrollView addSubview:({
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(scrollView.bounds.size.width*i, 0,
                                                                     scrollView.bounds.size.width,
                                                                     scrollView.bounds.size.height)];
-            
+            // 添加一个图层
             [view addSubview:({
                 UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 200, 100, 100)];
                 view.backgroundColor = [UIColor yellowColor];
+                // 添加点击事件
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewClick)];
                 tapGesture.delegate = self;
                 [view addGestureRecognizer:tapGesture];
                 view;
             })];
-            
-            
-            
             view.backgroundColor = [colorArray objectAtIndex:i];
             view;
         })];
     }
-    
-    
     [self.view addSubview:scrollView];
     // Do any additional setup after loading the view.
 }
